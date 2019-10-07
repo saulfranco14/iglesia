@@ -1,0 +1,81 @@
+@CHARSET "UTF-8";
+
+.imagenFondoGrupo
+{
+	background-image: url('../imagenes/entrega.jpg');
+}
+.imagenFondoAlumno
+{
+	background-image: url('../imagenes/pago.jpg');
+}
+
+.imagenFondoAlergia
+{
+	background-image: url('../imagenes/encargado.jpg');
+}
+
+.imagenFondoDomicilio
+{
+	background-image: url('../imagenes/salida.jpg');
+}
+.imagenFondoClientePagina
+{
+	background-image: url('../imagenes/cliente_pagina.jpg');
+}
+.imagenFondoStock
+{
+	background-image: url('../imagenes/stock.jpg');
+}
+.imagenFondoActividad
+{
+	background-image: url('../imagenes/trabajador.jpg');
+}
+.imagenFondoPagina
+{
+	background-image: url('../imagenes/adios.jpg');
+}
+.imagenFondoProfesor
+{
+	background-image: url('../imagenes/pago_encargado.jpg');
+}
+.imagenFondoGrado
+{
+	background-image: url('../imagenes/trabajador.jpg');
+}
+.imagenFondoAdministrador
+{
+	background-image: url('../imagenes/pago_trabajador.jpg');
+}
+
+/****** Menu CRM ******/
+
+.imagenFondoClientes
+{
+	background-image: url('../imagenes/clientes.jpg');
+}
+
+.imagenFondoPerfilados
+{
+	background-image: url('../imagenes/perfilados.jpg');
+}
+
+.imagenFondoCasas
+{
+	background-image: url('../imagenes/casas.png');
+}
+
+.imagenFondoRenta
+{
+	background-image: url('../imagenes/renta.jpg');
+}
+
+.imagenFondoDesarrollos
+{
+	background-image: url('../imagenes/desarrollos.jpg');
+}
+
+.imagenFondoDesarrolladores
+{
+	background-image: url('../imagenes/desarrolladores.jpg');
+}
+

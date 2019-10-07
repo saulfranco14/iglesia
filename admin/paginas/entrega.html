@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Lic Mario Colin Sanchez">
+		<meta name="author" content="Saul Mauricio Franco Renteria">
+		<link href="../estilos/bootstrap.min.css" rel="stylesheet">
+		<link href="../estilos/menu_izquierdo.css" rel="stylesheet">
+		<link href="../estilos/color.css" rel="stylesheet">
+		<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+		<link href="../imagenes/icono.png" rel="shortcut icon" type="icono/png" />
+		<title>Entrega</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+	 <div class="container">
+		<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMenuColapsable" aria-expanded="flase" aria-controls="navbar">
+					<span class="sr-only">Menu Colapsable</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			<a class="navbar-brand" href="menu.html">Sistema v1</a>
+		</div>
+		<div id="navbarMenuColapsable" class="navbar-collapse collapse">
+		<ul class="nav navbar-nav" id="tabsMenu">
+			<li>
+				<a href="#divTabListaEntrega" data-toggle="tab">
+					<span class="glyphicon glyphicon-file" aria-hidden="true">	
+					</span>&nbsp;Entrega
+				</a>
+			</li>
+			<li class="">
+				<a href="#divTabListaColores" data-toggle="tab" >
+					<span class="glyphicon glyphicon-eye-open" aria-hidden="true">	
+					</span>&nbsp;Listado de entrega de colores
+				</a>
+			</li>
+			
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="javascript: cerrarSesion();">Cerrar Sesión</a></li>
+		</ul>
+		</div>
+	 </div>
+	</nav>
+		
+		<div class="container-fluid sr-only">
+			<div class="container" role="navigation">
+				<ul id="tabsMenu" class="nav nav-tabs">
+					<li><a href="#divTabListaEntrega" data-toggle="tab">Listado</a></li>
+					<li><a href="#divTabFormularioEntrega" data-toggle="tab">Formulario</a></li>
+					<li><a href="#divTabBorrarEntrega" data-toggle="tab">Borrar</a></li>
+					<li><a href="#divTabBuscarEntrega" data-toggle="tab">Buscar</a></li>
+					<li><a href="#divTabColores" 	   data-toggle="tab">Colores</a></li>
+					<li><a href="#divTabListaColores" 	   data-toggle="tab">Lista de Colores</a></li>
+					<li><a href="#divTabBuscarColores" 	   data-toggle="tab">Buscar</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<!--
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="dash.html"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>&nbsp;Dashboard</a></li>
+						<li><a href="usuario.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Trabajadores</a></li>
+						<li class="active"><a href="prenda.html"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbsp;Prendas</a></li>
+						<li><a href="operacion.html"><span class="glyphicon glyphicon-record" aria-hidden="true"></span>&nbsp;Operaciones</a></li>
+						<li><a href="modelo.html"><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Modelos</a></li>
+						<li><a href="talla.html"><span class="glyphicon glyphicon-education" aria-hidden="true"></span>&nbsp;Tallas</a></li>
+						<li><a href="color.html"><span class="glyphicon glyphicon-italic" aria-hidden="true"></span>&nbsp;Colores</a></li>
+						<li><a href="cliente.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;Clientes</a></li>
+						<li><a href="javascript: cerrarSesion();">Salir</a></li>
+			        </ul>
+				</div>
+				-->
+				
+				<div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main"> 
+					<div id="divTabsPrincipal" class="tab-content">
+						<div id="divTabListaEntrega" class="tab-pane fade in active">
+							<h1>Entrega</h1>
+							<div class="btn-group btn-group-justified">
+								<a id="buttonAgregar" type="button" onclick="javascript: agregarEntrega();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+									&nbsp;Agregar Entrega
+								</a>
+								
+								<a id="buttonAgregar" type="button" onclick="javascript: coloresInsertar();" class="btn btn-success">
+									<span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
+									&nbsp;Agregar Color
+								</a>
+								
+					
+								<a id="buttonListarTodos" type="button" onclick="javascript: listarEntrega();" class="btn btn-info">
+									<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+									&nbsp;Listar Todos
+								</a>
+							</div>
+							<br>
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>ID</th>
+										<th>Fecha de Registro</th>
+										<!--<th>Ultima Modificación</th>-->
+										<th>Cantidad</th>
+										<th>Observacion</th>
+										<th>Fecha de Entrega</th>
+										<th>Corte</th>
+										<th>Talla</th>
+										<th>Modelo</th>
+										<th>Cliente</th>
+										
+									</tr>
+								</thead>
+								<tbody id="tbodyEntrega">
+									<tr>
+										<td>
+											<button id="buttonEditar" type="button" onclick="javascript: editarEntrega();" class="btn btn-sm btn-warning">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</button>
+											<button id="buttonBorrar" type="button" onclick="javascript: borrarEntrega();" class="btn btn-sm btn-danger">
+												<span class="glyphicon glyphicon-trash"></span>
+											</button>
+											
+											<button id="buttonVerColor" type="button" onclick="javascript: borrarEntrega();" class="btn btn-sm btn-primary">
+												<span class="glyphicon glyphicon-eye-open"></span>
+											</button>
+										</td>
+										<td>&nbsp;</td>
+										<td>Esperando datos...</td>
+										<td>&nbsp;</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+						<div id="divTabFormularioEntrega" class="tab-pane fade in">
+							<h1 id="h1TituloFormulario">Formulario de entrega</h1>
+							<div class="form-group">
+								<label for="id_entrega">ID</label>
+								<input id="id_entrega" type="text" class="form-control" maxlength="10" placeholder="" autocomplete="off" disabled />
+							</div>
+							
+							<div class="form-group">
+								<label for="cantidad">Cantidad</label>
+								<input id="cantidad" type="text" class="form-control" maxlength="255" placeholder="Especifique la cantidad de la entrega" autocomplete="off" />
+							</div>
+							<div class="form-group">
+								<label for="observacion">Observacion</label>
+								<input id="observacion" type="text" class="form-control" maxlength="255" placeholder="Especifique la observacion de la entrega" autocomplete="off" />
+							</div>
+							<div class="form-group">
+								<label for="fecha_entrega">Fecha de Entrega</label>
+									<div class="input-group datepicker-short full-width">
+										<input type="text" name="fecha_entrega" id="fecha_entrega" class="form-control"   />
+										          <span class="input-group-addon btn">
+										            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+										          </span>
+									</div>
+							</div>
+							<div class="form-group">
+								<label for="id_prenda"> Corte</label>
+								<select name="id_prenda" id="id_prenda" class="form-control">
+								<option value="x">Esperando cortes... </option>
+								</select>
+							</div>
+							<!--
+							<div class="form-group">
+								<label for="id_modelo"> Modelo</label>
+								<select name="id_modelo" id="id_modelo" class="form-control">
+								<option value="x">Esperando modelos... </option>
+								</select>
+							</div>
+						-->
+							<div class="form-group">
+								<label for="id_talla"> Talla</label>
+								<select name="id_talla" id="id_talla" class="form-control">
+								<option value="x">Esperando tallas... </option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="id_cliente"> Clientes</label>
+								<select name="id_cliente" id="id_cliente" class="form-control">
+								<option value="x">Esperando clientes... </option>
+								</select>
+							</div>
+											
+							<div class="btn-group btn-group-justified">
+								<a id="buttonListar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado de Entregas
+								</a>
+								<a id="buttonValidar" type="button" onclick="javascript: guardarEntrega();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+									&nbsp;Guardar
+								</a>
+							</div>
+						</div>
+						
+						<div id="divTabBorrarEntrega" class="tab-pane fade in">
+							<h1>Eliminacion de la entrega</h1>
+							<p id="pDatosColor">Entrea en cuestión</p>
+							<p class="text-danger">El borrado de la entrega no se pudo deshacer</p>
+							<p class="text-danger">¿Aun asi desea borrar el color?</p>
+							<div class="btn-group btn-group-justified">
+								<a id="buttonNoBorrar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado
+								</a>
+								<a id="buttonSiBorrar" type="button" onclick="javascript: borrarEntrega();" class="btn btn-danger">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									&nbsp;Si
+								</a>
+							</div>
+						</div>
+						
+						<div id="divTabBuscarColores" class="tab-pane fade in">
+							<h1>Busqueda de colores de entrega</h1>
+							<div class="form-group">
+								<label for="selectColumnaColores">Buscar por columna</label><br/>
+								<select id="selectColumnaColores" name="selectColumnaColores">
+									<option value="0">Todas las columnas</option>
+									<option value="11">ID</option>
+									<option value="12">Cantidad</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="inputCriterioColores">Criterio de busqueda</label>
+								<input id="inputCriterioColores" type="text" class="form-control" maxlength="100" placeholder="Criterio de busqueda" autocomplete="on"/>
+							</div>
+
+							<div class="btn-group btn-group-justified">
+								<a id="buttonCancelarBusqueda" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado
+								</a>
+								<a id="buttonBuscar" type="button" onclick="javascript: buscarEntregaColores();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									&nbsp;Buscar
+								</a>
+							</div>
+						</div>
+
+						<div id="divTabBuscarEntrega" class="tab-pane fade in">
+							<h1>Busqueda de la Entrega</h1>
+							<div class="form-group">
+								<label for="selectColumna">Buscar por columna</label><br/>
+								<select id="selectColumna" name="selectColumna">
+									<option value="0">Todas las columnas</option>
+									<option value="1">Cantidad</option>
+									<option value="2">Observacion</option>
+									<option value="3">Fecha de Entrega</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="inputCriterio">Criterio de busqueda</label>
+								<input id="inputCriterio" type="text" class="form-control" maxlength="100" placeholder="Criterio de busqueda" autocomplete="on"/>
+							</div>
+							<div class="btn-group btn-group-justified">
+								<a id="buttonCancelarBusqueda" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado
+								</a>
+								<a id="buttonBuscar" type="button" onclick="javascript: buscarEntrega();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									&nbsp;Buscar
+								</a>
+							</div>
+						</div>
+
+						<div id="divTabColores" class="tab-pane fade in">
+							<h1 id="h1TituloFormulario">Agregar color de entrega</h1>
+							<div class="form-group">
+								<label for="id_colores_entrega">ID</label>
+								<input id="id_colores_entrega"  type="text" class="form-control" maxlength="10" placeholder="" autocomplete="off" disabled />
+							</div>
+							<div class="form-group">
+								<label for="color_id_color"> Colores</label>
+								<select  id="color_id_color" class="form-control">
+								<option value="x">Esperando colores... </option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="cantidad_colores_entrega">Cantidad</label>
+								<input id="cantidad_colores_entrega"  type="text" class="form-control" placeholder="Especifique la cantidad del color " autocomplete="off" />
+							</div>
+							<div class="form-group">
+								<label for="entrega_id_entrega"> Entrega</label>
+								<select  id="entrega_id_entrega" class="form-control">
+								<option value="x">Esperando entregas... </option>
+								</select>
+							</div>
+							<div class="btn-group btn-group-justified">
+								<a id="buttonNoCambiar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado
+								</a>
+								<a id="buttonSiCambiar" type="button" onclick="javascript: guardarColorEntrega();" class="btn btn-success">
+									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+									&nbsp;Guardar
+								</a>
+							</div>
+						</div>
+
+						<div id="divTabListaColores" class="tab-pane fade in ">
+							<h1>Listado de Colores de entrega</h1>
+							<br>
+							<br>
+							<!--
+							<div class="btn-group btn-group-justified">
+								<a id="buttonListar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado de Entregas
+								</a>
+								
+								<a id="buttonBuscar" type="button" onclick="javascript: mostrarBusquedaColores();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									&nbsp;Busqueda
+								</a>
+								<a id="buttonListarColoresTodos" type="button" onclick="javascript: listarColoresEntrega();" class="btn btn-info">
+									<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+									&nbsp;Listar Todos
+								</a>
+							</div>
+							-->
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>ID</th>
+										<th>Fecha de Registro</th>
+										<!--<th>Ultima Modificación</th>-->
+										<th>Color</th>
+										<th>Cantidad</th>
+										<th>Talla</th>
+										<th>Entrega</th>	
+									</tr>
+								</thead>
+								<tbody id="tbodyEntregaColores">
+									<tr>
+										<td>
+											<button id="buttonEditar" type="button" onclick="javascript: editarEntrega();" class="btn btn-sm btn-warning">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</button>
+											<button id="buttonBorrar" type="button" onclick="javascript: borrarEntrega();" class="btn btn-sm btn-danger">
+												<span class="glyphicon glyphicon-trash"></span>
+											</button>
+										</td>
+										<td>&nbsp;</td>
+										<td>Esperando datos...</td>
+										<td>&nbsp;</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+
+					</div> <!-- divTabsPrincipal -->
+					
+					<footer>
+						<br/>
+						<hr/>
+						<p class="text-center">México 2017 <sup>c</sup>CDM</p>
+					</footer>
+				</div>
+			</div>  <!-- terminacion row -->
+		</div>
+		
+		<div id="divModalAvisos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">&times;</button>
+						<h4 class="modal-title">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							&nbsp;Aviso
+						</h4>
+					</div>
+					<div id="divAvisos" class="modal-body">
+						<p>Este mensaje sera remplasado por otro</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="../js/libs/jquery-2.1.4.min.js" type="text/javascript"></script>
+		<script src="../js/libs/bootstrap.min.js" type="text/javascript"></script>
+		<script src="../js/libs/color.js" type="text/javascript"></script>
+		<script src="../js/sanitizador.js" type="text/javascript"></script>
+		<script src="../js/generador_ids.js" type="text/javascript"></script>
+		<script src="../js/errores.js" type="text/javascript"></script>
+		<script src="../js/salir.js" type="text/javascript"></script>
+		<script src="../js/entrega.js" type="text/javascript"></script>
+		<script src="../js/datetimepicker.js"></script>
+		<script type="text/javascript" src="../bower_components/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../bower_components/moment/min/moment.min.js"></script>
+		<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	</body>
+</html>

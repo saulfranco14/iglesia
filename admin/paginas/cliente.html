@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Sistema v1">
+		<meta name="author" content="Saul Mauricio Franco Renteria">
+		<link href="../estilos/bootstrap.min.css" rel="stylesheet">
+		<link href="../estilos/menu_izquierdo.css" rel="stylesheet">
+		<link href="../imagenes/icono.png" rel="shortcut icon" type="icono/png" />
+		<title>Catalogo de Clientes</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMenuColapsable" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Menu Copalsable</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand " href="menu.html">Sistema v1</a>
+				</div>
+				<div id="#navbarMenuColapsable" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav visible-xs">
+					</ul>
+					<ul class="nav navbar-nav navbar-right visible-xs">
+						<li><a href="javascript: cerrarSesion();">Salir</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container-fluid sr-only">
+			<div class="container" role="navigation">
+				<ul id="tabsMenu" class="nav nav-tabs">
+					<li><a href="#divTabListaCliente" data-toggle="tab">Listado</a></li>
+					<li><a href="#divTabFormularioCliente" data-toggle="tab">Formulario</a></li>
+					<li><a href="#divTabBorrarCliente" data-toggle="tab">Borrar</a></li>
+					<li><a href="#divTabBuscarCliente" data-toggle="tab">Buscar</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="dash.html"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>&nbsp;Dashboard</a></li>
+						<li><a href="usuario.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Trabajadores</a></li>
+						<li><a href="prenda.html"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbsp;Cortes</a></li>
+						<li><a href="operacion.html"><span class="glyphicon glyphicon-record" aria-hidden="true"></span>&nbsp;Operaciones</a></li>
+						<li><a href="modelo.html"><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Modelos</a></li>
+						<li><a href="talla.html"><span class="glyphicon glyphicon-education" aria-hidden="true"></span>&nbsp;Tallas</a></li>
+						<li><a href="color.html"><span class="glyphicon glyphicon-italic" aria-hidden="true"></span>&nbsp;Colores</a></li>
+						<li class="active"><a href="cliente.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;Clientes</a></li>
+						<li><a href="javascript: cerrarSesion();">Salir</a></li>
+			        </ul>
+		</div>
+				
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> 
+					<div id="divTabsPrincipal" class="tab-content">
+						<div id="divTabListaCliente" class="tab-pane fade in active">
+							<h1>Catálogo de Cliente</h1>
+							<div class="btn-group btn-group-justified">
+								<a id="buttonAgregar" type="button" onclick="javascript: agregarCliente();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+									&nbsp;Agregar Cliente
+								</a>
+								<a id="buttonBuscar" type="button" onclick="javascript: mostrarBusqueda();" class="btn btn-info">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									&nbsp;Busqueda
+								</a>
+								<a id="buttonListarTodos" type="button" onclick="javascript: listarCliente();" class="btn btn-info">
+									<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+									&nbsp;Listar Todos
+								</a>
+							</div>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>ID</th>
+										<th>Fecha de Registro</th>
+										<th>Ultima Modificación</th>
+										<th>Nombre</th>
+										<th>Orden</th>
+										<th>Telefono Celular</th>
+									</tr>
+								</thead>
+								<tbody id="tbodyCliente">
+									<tr>
+										<td>
+											<button id="buttonEditar" type="button" onclick="javascript: editarCliente();" class="btn btn-sm btn-warning">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</button>
+											<button id="buttonBorrar" type="button" onclick="javascript: borrarCliente();" class="btn btn-sm btn-danger">
+												<span class="glyphicon glyphicon-trash"></span>
+											</button>
+										</td>
+										<td>&nbsp;</td>
+										<td>Esperando datos...</td>
+										<td>&nbsp;</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+						<div id="divTabFormularioCliente" class="tab-pane fade in">
+							<h1 id="h1TituloFormulario">Formulario del cliente</h1>
+							<div class="form-group">
+								<label for="id_cliente">ID</label>
+								<input id="id_cliente" type="text" class="form-control" maxlength="10" placeholder="" autocomplete="off" disabled />
+							</div>
+							
+							<div class="form-group">
+								<label for="nombre">Nombre</label>
+								<input id="nombre" type="text" class="form-control mayusculas" maxlength="255" placeholder="Especifique el nombre del cliente" autocomplete="off" />
+							</div>
+							<div class="form-group">
+								<label for="orden">Orden</label>
+								<input id="orden" type="text" class="form-control" maxlength="255" placeholder="Especifique el orden que quieres ver al cliente" autocomplete="off" />
+							</div>
+							<div class="form-group">
+								<label for="telefono_celular">Telefono celular</label>
+								<input id="telefono_celular" type="text" class="form-control" maxlength="255" placeholder="Especifique el telefono celular del cliente" autocomplete="off" />
+							</div>
+							
+							
+							<div class="btn-group btn-group-justified">
+								<a id="buttonListar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado de Clientes
+								</a>
+								<a id="buttonValidar" type="button" onclick="javascript: guardarCliente();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+									&nbsp;Guardar
+								</a>
+							</div>
+						</div>
+						
+						<div id="divTabBorrarCliente" class="tab-pane fade in">
+							<h1>Eliminacion del Cliente</h1>
+							<p id="pDatosCliente">Cliente en cuestión</p>
+							<p class="text-danger">El borrado del cliente no se pudo deshacer</p>
+							<p class="text-danger">¿Aun asi desea borrar al cliente?</p>
+							<div class="btn-group btn-group-justified">
+								<a id="buttonNoBorrar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado
+								</a>
+								<a id="buttonSiBorrar" type="button" onclick="javascript: borrarCliente();" class="btn btn-danger">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									&nbsp;Si
+								</a>
+							</div>
+						</div>
+						
+						<div id="divTabBuscarCliente" class="tab-pane fade in">
+							<h1>Busqueda del cliente</h1>
+							<div class="form-group">
+								<label for="selectColumna">Buscar por columna</label><br/>
+								<select id="selectColumna" name="selectColumna">
+									<option value="0">Todas las columnas</option>
+									<option value="1">Id del cliente</option>
+									<option value="2">Nombre</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="inputCriterio">Criterio de busqueda</label>
+								<input id="inputCriterio" type="text" class="form-control" maxlength="100" placeholder="Criterio de busqueda" autocomplete="on"/>
+							</div>
+							<div class="btn-group btn-group-justified">
+								<a id="buttonCancelarBusqueda" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado
+								</a>
+								<a id="buttonBuscar" type="button" onclick="javascript: buscarCliente();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									&nbsp;Buscar
+								</a>
+							</div>
+						</div>
+					</div> <!-- divTabsPrincipal -->
+					
+					<footer>
+						<br/>
+						<hr/>
+						<p class="text-center">México 2017 <sup>c</sup>CDM</p>
+					</footer>
+				</div>
+			</div>  <!-- terminacion row -->
+		</div>
+		
+		<div id="divModalAvisos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">&times;</button>
+						<h4 class="modal-title">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							&nbsp;Aviso
+						</h4>
+					</div>
+					<div id="divAvisos" class="modal-body">
+						<p>Este mensaje sera remplasado por otro</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="../js/libs/jquery-2.1.4.min.js" type="text/javascript"></script>
+		<script src="../js/libs/bootstrap.min.js" type="text/javascript"></script>
+		<script src="../js/sanitizador.js" type="text/javascript"></script>
+		<script src="../js/generador_ids.js" type="text/javascript"></script>
+		<script src="../js/errores.js" type="text/javascript"></script>
+		<script src="../js/salir.js" type="text/javascript"></script>
+		<script src="../js/cliente.js" type="text/javascript"></script>
+	</body>
+</html>

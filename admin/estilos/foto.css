@@ -1,0 +1,43 @@
+/* 
+ 
+*/
+
+.muestra{
+    height: 100px;
+    width: 100px;
+}
+
+div.upload {
+    /*width: 129px;*/
+    
+
+}
+
+div.upload input {
+    position: absolute !important;
+    display: block !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+  
+}
+select, input[type="file"] {
+    height: 45px;
+    *margin-top: 4px;
+    line-height: 30px;
+    width: 800px;
+    cursor: pointer;
+}
+
+.img-thumbnail-custom {
+    display: inline-block;
+    height: 300px;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    
+}

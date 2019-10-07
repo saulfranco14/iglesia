@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Lic Mario Colin Sanchez">
+		<meta name="author" content="Saul Mauricio Franco Renteria">
+		<link href="../estilos/bootstrap.min.css" rel="stylesheet">
+		<link href="../estilos/menu_izquierdo.css" rel="stylesheet">
+		<link href="../estilos/color.css" rel="stylesheet">
+		<link href="../imagenes/icono.png" rel="shortcut icon" type="icono/png" />
+		<title>Catalogo de Operaciones</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMenuColapsable" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Menu Copalsable</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand " href="menu.html">Sistema v1</a>
+				</div>
+				<div id="#navbarMenuColapsable" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav visible-xs">
+					</ul>
+					<ul class="nav navbar-nav navbar-right visible-xs">
+						<li><a href="javascript: cerrarSesion();">Salir</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container-fluid sr-only">
+			<div class="container" role="navigation">
+				<ul id="tabsMenu" class="nav nav-tabs">
+					<li><a href="#divTabListaOperacion" data-toggle="tab">Listado</a></li>
+					<li><a href="#divTabFormularioOperacion" data-toggle="tab">Formulario</a></li>
+					<li><a href="#divTabBorrarOperacion" data-toggle="tab">Borrar</a></li>
+					<li><a href="#divTabBuscarOperacion" data-toggle="tab">Buscar</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="dash.html"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>&nbsp;Dashboard</a></li>
+						<li><a href="usuario.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Trabajadores</a></li>
+						<li><a href="prenda.html"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbsp;Cortes</a></li>
+						<li class="active"><a href="operacion.html"><span class="glyphicon glyphicon-record" aria-hidden="true"></span>&nbsp;Operaciones</a></li>
+						<li><a href="modelo.html"><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Modelos</a></li>
+						<li><a href="talla.html"><span class="glyphicon glyphicon-education" aria-hidden="true"></span>&nbsp;Tallas</a></li>
+						<li><a href="color.html"><span class="glyphicon glyphicon-italic" aria-hidden="true"></span>&nbsp;Colores</a></li>
+						<li><a href="cliente.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;Clientes</a></li>
+						
+			        </ul>
+		</div>
+				
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> 
+					<div id="divTabsPrincipal" class="tab-content">
+						<div id="divTabListaOperacion" class="tab-pane fade in active">
+							<h1>Catálogo de Operacion</h1>
+							<div class="btn-group btn-group-justified">
+								<a id="buttonAgregar" type="button" onclick="javascript: agregarOperacion();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+									&nbsp;Agregar Operacion
+								</a>
+							
+								<a id="buttonBuscar" type="button" onclick="javascript: mostrarBusqueda();" class="btn btn-info">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									&nbsp;Busqueda
+								</a>
+								<a id="buttonListarTodos" type="button" onclick="javascript: listarOperacion();" class="btn btn-info">
+									<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+									&nbsp;Listar Todos
+								</a>
+							</div>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>ID</th>
+										<th>Fecha de Registro</th>
+										<th>Ultima Modificación</th>
+										<th>Nombre</th>
+										<th>Descripcion</th>
+										<th>Costo</th>
+										<th>Corte</th>
+										<th>Modelo</th>
+										
+									</tr>
+								</thead>
+								<tbody id="tbodyOperacion">
+									<tr>
+										<td>
+											<button id="buttonEditar" type="button" onclick="javascript: editarOperacion();" class="btn btn-sm btn-warning">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</button>
+											<button id="buttonBorrar" type="button" onclick="javascript: borrarOperacion();" class="btn btn-sm btn-danger">
+												<span class="glyphicon glyphicon-trash"></span>
+											</button>
+										</td>
+										<td>&nbsp;</td>
+										<td>Esperando datos...</td>
+										<td>&nbsp;</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+						<div id="divTabFormularioOperacion" class="tab-pane fade in">
+							<h1 id="h1TituloFormulario">Formulario de Operacion</h1>
+							<div class="form-group">
+								<label for="id_operacion">ID</label>
+								<input id="id_operacion" type="text" class="form-control" maxlength="10" placeholder="" autocomplete="off" disabled />
+							</div>
+							
+							<div class="form-group">
+								<label for="nombre">Nombre</label>
+								<input id="nombre" type="text" class="form-control mayusculas" maxlength="255" placeholder="Especifique el nombre de la operacion" autocomplete="off" />
+							</div>
+							<div class="form-group">
+								<label for="numero_operacion">Numero de Operacion</label>
+								<input id="numero_operacion" type="text" class="form-control" maxlength="255" placeholder="Especifique el numero de operacion" autocomplete="off" />
+							</div>
+							<div class="form-group">
+								<label for="descripcion">Tipo de operacion</label>
+								 <select class="form-control" id="descripcion" name="descripcion" >
+								 	<option value="" checked>Seleccione unn tipo</option>
+							        <option value="MANUAL">MANUAL</option>
+							        <option value="MAQUINA">MAQUINA</option>
+							        
+							      </select>
+							</div>
+
+							<div class="form-group">
+								<label for="costo">Costo</label>
+								<input id="costo" type="text" class="form-control" maxlength="255" placeholder="Especifique el costo de la operacion" autocomplete="off" />
+							</div>
+
+							<div class="form-group">
+								<label for="id_prenda"> Cortes</label>
+								<select name="id_prenda" id="id_prenda" class="form-control">
+								<option value="x">Esperando cortes... </option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="id_modelo"> Modelo</label>
+								<select name="id_modelo" id="id_modelo" class="form-control">
+								<option value="x">Esperando modelos... </option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="ultima_operacion">Ultima operacion</label>
+								 <select class="form-control" id="ultima_operacion" name="ultima_operacion" >
+								 	<option value="" checked>Seleccione</option>
+							        <option value="0">NO</option>
+							        <option value="1">SI</option>
+							        
+							      </select>
+							</div>
+
+							<div class="btn-group btn-group-justified">
+								<a id="buttonListar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado de Operaciones
+								</a>
+								<a id="buttonValidar" type="button" onclick="javascript: guardarOperacion();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+									&nbsp;Guardar
+								</a>
+							</div>
+						</div>
+						
+						<div id="divTabBorrarOperacion" class="tab-pane fade in">
+							<h1>Eliminacion de la Operacion</h1>
+							<p id="pDatosColor">Operacion en cuestión</p>
+							<p class="text-danger">El borrado de la operacion no se pudo deshacer</p>
+							<p class="text-danger">¿Aun asi desea borrar la operacion?</p>
+							<div class="btn-group btn-group-justified">
+								<a id="buttonNoBorrar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado
+								</a>
+								<a id="buttonSiBorrar" type="button" onclick="javascript: borrarOperacion();" class="btn btn-danger">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									&nbsp;Si
+								</a>
+							</div>
+						</div>
+						
+						<div id="divTabBuscarOperacion" class="tab-pane fade in">
+							<h1>Busqueda de la Operacion</h1>
+							<div class="form-group">
+								<label for="selectColumna">Buscar por columna</label><br/>
+								<select id="selectColumna" name="selectColumna">
+									<option value="0">Todas las columnas</option>
+									<option value="1">Id de la operacion</option>
+									<option value="2">Nombre</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="inputCriterio">Criterio de busqueda</label>
+								<input id="inputCriterio" type="text" class="form-control" maxlength="100" placeholder="Criterio de busqueda" autocomplete="on"/>
+							</div>
+							<div class="btn-group btn-group-justified">
+								<a id="buttonCancelarBusqueda" type="button" onclick="javascript: mostrarListado();" class="btn btn-info">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									&nbsp;Listado
+								</a>
+								<a id="buttonBuscar" type="button" onclick="javascript: buscarOperacion();" class="btn btn-primary">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									&nbsp;Buscar
+								</a>
+							</div>
+						</div>
+					</div> <!-- divTabsPrincipal -->
+					
+					<footer>
+						<br/>
+						<hr/>
+						<p class="text-center">México 2017 <sup>c</sup>CDM</p>
+					</footer>
+				</div>
+			</div>  <!-- terminacion row -->
+		</div>
+		
+		<div id="divModalAvisos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">&times;</button>
+						<h4 class="modal-title">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							&nbsp;Aviso
+						</h4>
+					</div>
+					<div id="divAvisos" class="modal-body">
+						<p>Este mensaje sera remplasado por otro</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="../js/libs/jquery-2.1.4.min.js" type="text/javascript"></script>
+		<script src="../js/libs/bootstrap.min.js" type="text/javascript"></script>
+		<script src="../js/libs/color.js" type="text/javascript"></script>
+		<script src="../js/sanitizador.js" type="text/javascript"></script>
+		<script src="../js/generador_ids.js" type="text/javascript"></script>
+		<script src="../js/errores.js" type="text/javascript"></script>
+		<script src="../js/salir.js" type="text/javascript"></script>
+		<script src="../js/operacion.js" type="text/javascript"></script>
+		
+
+	</body>
+</html>
