@@ -1,8 +1,7 @@
 /**
  * JS Acceso, para brindar funcionalidades JSON desde / hacia el servidor.
- * Software Escolaris©
- * @author Ing. Saul Mauricio Franco Renteria
- * @copyright Derechos reservados, México 2008-2012 Registros 03-2008-021510561000-01 03-2008-021510484100-01
+ * Iglesia San Mateo
+ * @author Saul Mauricio Franco Renteria
  * @version 1.0.0
  * @package js
  * @final

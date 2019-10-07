@@ -4,11 +4,10 @@ require_once 'base.php';
 
 /**
  * Clase Acceso, para brindar funcionalidades para Accesar a la Aplicacion.
- * Software Escolaris�
- * @author Ing. Saul Mauricio Franco Renteria
- * @copyright Derechos reservados, M�xico 2008-2012 Registros 03-2008-021510561000-01 03-2008-021510484100-01
+ * Iglesia San Mateo
+ * @author Saul Mauricio Franco Renteria
  * @version 1.0
- * @package Escolaris
+ * @package 
  * @final
  */
 final Class Acceso extends Base
@@ -97,7 +96,7 @@ final Class Acceso extends Base
         $this->_id = 0;
         $this->_usuario = $this->formatear($correo, "Cadena");
         $this->_password = $this->formatear($password, "Encriptalo");
-        $this->_sql = sprintf("SELECT id_usuario, correo, password, rol FROM usuario WHERE (correo =%s AND password=%s) LIMIT 1;", $this->_usuario, $this->_password);
+        $this->_sql = sprintf("SELECT id_usuario, email, password, id_role FROM usuariosanmateo WHERE (email =%s AND password=%s) LIMIT 1;", $this->_usuario, $this->_password);
         $this->_registro = $this->sentenciaSQL($this->_sql, 7);
         $this->_id = $this->_registro['id_usuario'];
         if ($this->_id > 0) {
@@ -108,7 +107,7 @@ final Class Acceso extends Base
             $_SESSION["tokenUsuario"] = md5(sha1(session_id() . $_SERVER['REMOTE_ADDR'] . $_SESSION["id_usuario"]));
             $_SESSION['validacion'] = null;
             unset($_SESSION['validacion']);
-            return array(sha1(md5(microtime())), $this->_registro['rol']); //Retornamos una cadena aleatoria de 40 caracteres
+            return array(sha1(md5(microtime())), $this->_registro['id_role']); //Retornamos una cadena aleatoria de 40 caracteres
         } else {
             //El ID no fue mayor que cero, estan incorrectos usuario_zootecnico y/o contrase�a:
             if (PRODUCCION) {

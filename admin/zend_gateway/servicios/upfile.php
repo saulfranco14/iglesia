@@ -41,7 +41,7 @@ Class UpFile
      */
     public function cover($id, $titulo, $_foto_anterior, $archivo, $_directorio)
     {
-        $mysqli = new mysqli("localhost", "root", "", "centenario_beta");
+        $mysqli = new mysqli("localhost", "root", "", "dbsanmateo");
         if (mysqli_connect_errno()) {
             printf("Falló la conexión failed: %s\n", $mysqli->connect_error);
             exit();
