@@ -212,7 +212,7 @@ function exitoVerificarAcceso(jsonRespuesta, estatusRespuesta, jqXHR)
     if (arrayRespuesta[0].toString().length == 40) {
         //Si se pudo lograr, nos vamos al menu:
         if (arrayRespuesta[1] == '1') {
-            document.location.assign('admin/paginas/menu.html');//Si agrega la pagina al historial
+            document.location.assign('dashboard.html');//Si agrega la pagina al historial
         } else if (arrayRespuesta[1] == '2') {
             document.location.assign('admin/paginas/inventario.html');//Si agrega la pagina al historial
             //socument.location.replace('menu.html');//No agrega la pagina al historial
