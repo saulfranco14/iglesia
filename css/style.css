@@ -8816,4 +8816,6 @@ textarea.form-control {
 .blackWhite{
   color: white;
 }
-
+.validateCss{
+  font-weight: bold ;
+}
